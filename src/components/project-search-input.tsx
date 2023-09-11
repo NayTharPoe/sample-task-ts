@@ -21,12 +21,8 @@ export const StyledIconButton = styled(ButtonBase)(({ theme }) => ({
 
 export const Search = styled('div')(({ theme }) => ({
   position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  border: `1px solid ${
-    theme.palette.mode === 'light'
-      ? theme.palette.grey[400]
-      : theme.palette.grey[700]
-  }`,
+  borderRadius: '.5rem',
+  border: `1px solid ${theme.palette.milky['600']}`,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
@@ -36,7 +32,7 @@ export const Search = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
     width: 'auto',
   },
-  overflow:'hidden',
+  overflow: 'hidden',
 }));
 
 export const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -82,42 +78,22 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function ProjectSearchBox({
-  name,
   value,
-  onChange,
+  inputSearch,
 }: {
-  name: string;
-  value: string;
-  onChange: (value: string) => void;
+  value: any;
+  inputSearch: (value: string) => void;
 }) {
-  const handleOnChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      onChange(e.target.value);
-    },
-    [onChange]
-  );
-
-  const handleClear = useCallback(() => {
-    onChange('');
-  }, [onChange]);
-
   return (
     <Stack direction="row">
       <Search>
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>
-        {value && (
-          <ClearIconWrapper onClick={handleClear}>
-            <ClearIcon fontSize="small" />
-          </ClearIconWrapper>
-        )}
         <StyledInputBase
-          name={name}
           value={value}
-          onChange={handleOnChange}
+          onChange={inputSearch}
           placeholder="Search…"
-          inputProps={{ 'aria-label': 'search' }}
         />
       </Search>
     </Stack>

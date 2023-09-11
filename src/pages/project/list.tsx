@@ -27,6 +27,7 @@ import type { NextPageWithLayout } from '../_app';
 import { BpCheckedIcon } from '../../components/checkbox'
 import { BpIcon } from '../../components/checkbox';
 import TableBtn from '../../components/tableBtn'
+import ProjectSearchBox from '@/components/project-search-input';
 
 interface Data {
   projectName: string,
@@ -249,7 +250,8 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           id="tableTitle"
           component="div"
         >
-           <TextField
+          <ProjectSearchBox value={searchText} inputSearch={handleSearchInputChange}/>
+           {/* <TextField
               sx={{
                 width: '800px',
                 border: 0,
@@ -268,7 +270,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
                   </InputAdornment>
                 ),
               }}
-            />
+            /> */}
         </Typography>
       )}
       {numSelected > 0 ? (
